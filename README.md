@@ -47,9 +47,6 @@
 | price                  | references | null: false, foreign_key: true |
 | place                  | references | null: false, foreign_key: true |
 |
-|
-|
-
 
 ### Association
 
