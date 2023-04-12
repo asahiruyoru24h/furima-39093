@@ -46,7 +46,6 @@
 | days                   | references | null: false, foreign_key: true |
 | price                  | references | null: false, foreign_key: true |
 | place                  | references | null: false, foreign_key: true |
-|
 
 ### Association
 
@@ -61,8 +60,6 @@
 | city            | references | null: false, foreign_key: true |
 |address line     | references | null: false, foreign_key: true |
 |mobile number    | references | null: false, foreign_key: true |
-|
-|
 |
 |
 
