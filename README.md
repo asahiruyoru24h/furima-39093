@@ -4,16 +4,14 @@
 
 | Column                                  | Type   | Options     |
 | ----------------------------------------| ------ | ----------- |
-| kanji first name                        | string | null: false |
-| kanji last name                         | string | null: false |
-| kana first name                         | string | null: false |
-| kana last name                          | string | null: false |
-| email                                   | string | null: false |
-| confirm password                        | string | null: false |
+| nickname                                | string | null: false |
+| kanji_first_name                        | string | null: false |
+| kanji_last_name                         | string | null: false |
+| kana_first_name                         | string | null: false |
+| kana_last_name                          | string | null: false |
+| email                                   | string | unique: true |
 | encrypted_password                      | string | null: false |
-| birth year                              | iiiiii | null: false |
-| birth month                             | string | null: false |
-| birth day                               | string | null: false |
+| birthday                                | date   | null: fals |
 
 
 ### Association
