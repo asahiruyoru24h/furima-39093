@@ -1,24 +1,75 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column                                  | Type   | Options     |
+| ----------------------------------------| ------ | ----------- |
+| kanji first name                        | string | null: false |
+| kanji last name                         | string | null: false |
+| kana first name                         | string | null: false |
+| kana last name                          | string | null: false |
+| email                                   | string | null: false |
+| confirm password                        | string | null: false |
+| encrypted_password                      | string | null: false |
+| birth year                              | iiiiii | null: false |
+| birth month                             | string | null: false |
+| birth day                               | string | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :items,costumer,address,
+- has_many :items, through: :costumer
 
-* Database creation
+## costumer テーブル
 
-* Database initialization
+| Column | Type   | Options     |
+| ------ | ------ | ----------- |
+| name   | string | null: false |
+| item   | string | null: false |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many :address
+- has_many :users, through: :room_users
+- has_many :messages
 
-* Deployment instructions
+## items テーブル
 
-* ...
+| Column                 | Type       | Options                        |
+| -----------------------| ---------- | ------------------------------ |
+| title                  | references | null: false, foreign_key: true |
+| text                   | references | null: false, foreign_key: true |
+| category               | references | null: false, foreign_key: true |
+| condition              | references | null: false, foreign_key: true |
+| shipment fee           | references | null: false, foreign_key: true |
+| days                   | references | null: false, foreign_key: true |
+| price                  | references | null: false, foreign_key: true |
+| place                  | references | null: false, foreign_key: true |
+|
+|
+|
+
+
+### Association
+
+- belongs_to :user
+
+## address テーブル
+
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postcode        | string     | null: false, foreign_key: true |
+| state           | references | null: false, foreign_key: true |
+| city            | references | null: false, foreign_key: true |
+|address line     | references | null: false, foreign_key: true |
+|mobile number    | references | null: false, foreign_key: true |
+|
+|
+|
+|
+
+### Association
+
+- belongs_to :costumer
+- belongs_to :user
