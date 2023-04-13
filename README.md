@@ -17,20 +17,19 @@
 ### Association
 
 - has_many :items
-  has_many :costumer
+  has_many :costumers
 
 ## costumers テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| name   | reference | null: false,foreign_key: true |
-| item   | reference | null: false,foreign_key: true |
+| item   | references | null: false,foreign_key: true |
 
 ### Association
 
 
 belongs_to :user
-belongs_to :items
+belongs_to :item
 has_one :address
 
 ## items テーブル
@@ -44,8 +43,8 @@ has_one :address
 | shipment_fee_id        | integer| null: false|
 | prepare_id             | integer| null: false|
 | price                  | integer| null: false|
-| place                  | integer| null: false|
-| seller                 | reference  |null: false,foreign_key: true |
+| place_id               | integer| null: false|
+| user                   | references |null: false,foreign_key: true |
 
 
   
@@ -53,17 +52,17 @@ has_one :address
   has_one :costumer
 
 
-## address テーブル
+## addresses テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | postcode        | string     | null: false|
-| state_id        | integer    | null: false|
+| place_id        | integer    | null: false|
 | city            | string     | null: false|
 | building         | string     |            |
 | address_line     | string     | null: false|
 | mobile_number    | string     | null: false|
-| user_id          | reference  |null: false,foreign_key: true |
+| user             | references |null: false,foreign_key: true |
 |
 
 ### Association
