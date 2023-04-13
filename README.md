@@ -16,19 +16,21 @@
 
 ### Association
 
-- has_many :items,costumer
+- has_many :items
+  has_many :costumer
 
-## costumer テーブル
+## costumers テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| name   | string | null: false,foreign_key: true |
-| item   | string | null: false,foreign_key: true |
+| name   | reference | null: false,foreign_key: true |
+| item   | reference | null: false,foreign_key: true |
 
 ### Association
 
 
 belongs_to :user
+belongs_to :items
 has_one :address
 
 ## items テーブル
@@ -36,29 +38,32 @@ has_one :address
 | Column                 | Type       | Options                        |
 | -----------------------| ---------- | ------------------------------ |
 | title                  | string | null: false|
-| text                   | string | null: false|
-| category_id               | integer| null: false|
-| condition_id              | integer| null: false|
-| shipment fee_id           | integer| null: false|
-| days_id                   | integer| null: false|
-| price_id                  | integer| null: false|
-| place_id                  | integer| null: false|
-### Association
+| about                  | text   | null: false|
+| category_id            | integer| null: false|
+| condition_id           | integer| null: false|
+| shipment_fee_id        | integer| null: false|
+| prepare_id             | integer| null: false|
+| price                  | integer| null: false|
+| place                  | integer| null: false|
+| seller                 | reference  |null: false,foreign_key: true |
+
 
   
-- belongs_to :user,costumer
+- belongs_to :user
+  has_one :costumer
+
 
 ## address テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| postcode        | integer    | null: false|
-| state           | string     | null: false|
+| postcode        | string     | null: false|
+| state_id        | integer    | null: false|
 | city            | string     | null: false|
-|building         | string     |            |
-|address line     | string     | null: false|
-|mobile number    | string     | null: false|
-|
+| building         | string     |            |
+| address_line     | string     | null: false|
+| mobile_number    | string     | null: false|
+| user_id          | reference  |null: false,foreign_key: true |
 |
 
 ### Association
