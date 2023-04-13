@@ -21,8 +21,8 @@
 
 ## costumers テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
+| Column | Type       | Options                       |
+| user   | references |null: false,foreign_key: true  |
 | item   | references | null: false,foreign_key: true |
 
 ### Association
@@ -62,7 +62,7 @@ has_one :address
 | building         | string     |            |
 | address_line     | string     | null: false|
 | mobile_number    | string     | null: false|
-| user             | references |null: false,foreign_key: true |
+| costumer         | references |null: false,foreign_key: true |
 |
 
 ### Association
