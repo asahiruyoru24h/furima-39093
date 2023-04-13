@@ -9,59 +9,57 @@
 | kanji_last_name                         | string | null: false |
 | kana_first_name                         | string | null: false |
 | kana_last_name                          | string | null: false |
-| email                                   | string | unique: true |
+| email                                   | string | null: false,unique: true	|
 | encrypted_password                      | string | null: false |
-| birthday                                | date   | null: fals |
+| birthday                                | date   | null: false |
 
 
 ### Association
 
-- has_many :items,costumer,address,
-- has_many :items, through: :costumer
+- has_many :items,costumer
 
 ## costumer テーブル
 
 | Column | Type   | Options     |
 | ------ | ------ | ----------- |
-| name   | string | null: false |
-| item   | string | null: false |
+| name   | string | null: false,foreign_key: true |
+| item   | string | null: false,foreign_key: true |
 
 ### Association
 
-- has_many :address
-- has_many :users, through: :room_users
-- has_many :messages
+
+belongs_to :user
+has_one :address
 
 ## items テーブル
 
 | Column                 | Type       | Options                        |
 | -----------------------| ---------- | ------------------------------ |
-| title                  | references | null: false, foreign_key: true |
-| text                   | references | null: false, foreign_key: true |
-| category               | references | null: false, foreign_key: true |
-| condition              | references | null: false, foreign_key: true |
-| shipment fee           | references | null: false, foreign_key: true |
-| days                   | references | null: false, foreign_key: true |
-| price                  | references | null: false, foreign_key: true |
-| place                  | references | null: false, foreign_key: true |
-
+| title                  | string | null: false|
+| text                   | string | null: false|
+| category_id               | integer| null: false|
+| condition_id              | integer| null: false|
+| shipment fee_id           | integer| null: false|
+| days_id                   | integer| null: false|
+| price_id                  | integer| null: false|
+| place_id                  | integer| null: false|
 ### Association
 
-- belongs_to :user
+  
+- belongs_to :user,costumer
 
 ## address テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| postcode        | string     | null: false, foreign_key: true |
-| state           | references | null: false, foreign_key: true |
-| city            | references | null: false, foreign_key: true |
-|address line     | references | null: false, foreign_key: true |
-|mobile number    | references | null: false, foreign_key: true |
+| postcode        | integer    | null: false|
+| state           | string     | null: false|
+| city            | string     | null: false|
+|address line     | string     | null: false|
+|mobile number    | string     | null: false|
 |
 |
 
 ### Association
 
 - belongs_to :costumer
-- belongs_to :user
