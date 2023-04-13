@@ -55,6 +55,7 @@ has_one :address
 | postcode        | integer    | null: false|
 | state           | string     | null: false|
 | city            | string     | null: false|
+|building         | string     |            |
 |address line     | string     | null: false|
 |mobile number    | string     | null: false|
 |
