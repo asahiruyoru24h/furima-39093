@@ -17,9 +17,9 @@
 ### Association
 
 - has_many :items
-  has_many :costumers
+  has_many :customers
 
-## costumers テーブル
+## customers テーブル
 
 | Column | Type       | Options                       |
 | user   | references |null: false,foreign_key: true  |
@@ -49,7 +49,7 @@ has_one :address
 
   
 - belongs_to :user
-  has_one :costumer
+  has_one :customer
 
 
 ## addresses テーブル
@@ -67,4 +67,4 @@ has_one :address
 
 ### Association
 
-- belongs_to :costumer
+- belongs_to :customer
