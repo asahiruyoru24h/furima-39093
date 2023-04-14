@@ -4,69 +4,67 @@
 
 | Column                                  | Type   | Options     |
 | ----------------------------------------| ------ | ----------- |
-| kanji first name                        | string | null: false |
-| kanji last name                         | string | null: false |
-| kana first name                         | string | null: false |
-| kana last name                          | string | null: false |
-| email                                   | string | null: false |
-| confirm password                        | string | null: false |
+| nickname                                | string | null: false |
+| kanji_first_name                        | string | null: false |
+| kanji_last_name                         | string | null: false |
+| kana_first_name                         | string | null: false |
+| kana_last_name                          | string | null: false |
+| email                                   | string | null: false,unique: true	|
 | encrypted_password                      | string | null: false |
-| birth year                              | iiiiii | null: false |
-| birth month                             | string | null: false |
-| birth day                               | string | null: false |
+| birthday                                | date   | null: false |
 
 
 ### Association
 
-- has_many :items,costumer,address,
-- has_many :items, through: :costumer
+- has_many :items
+  has_many :customers
 
-## costumer テーブル
+## customers テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
-| item   | string | null: false |
+| Column | Type       | Options                       |
+| user   | references |null: false,foreign_key: true  |
+| item   | references | null: false,foreign_key: true |
 
 ### Association
 
-- has_many :address
-- has_many :users, through: :room_users
-- has_many :messages
+
+belongs_to :user
+belongs_to :item
+has_one :address
 
 ## items テーブル
 
 | Column                 | Type       | Options                        |
 | -----------------------| ---------- | ------------------------------ |
-| title                  | references | null: false, foreign_key: true |
-| text                   | references | null: false, foreign_key: true |
-| category               | references | null: false, foreign_key: true |
-| condition              | references | null: false, foreign_key: true |
-| shipment fee           | references | null: false, foreign_key: true |
-| days                   | references | null: false, foreign_key: true |
-| price                  | references | null: false, foreign_key: true |
-| place                  | references | null: false, foreign_key: true |
-|
+| title                  | string | null: false|
+| about                  | text   | null: false|
+| category_id            | integer| null: false|
+| condition_id           | integer| null: false|
+| shipment_fee_id        | integer| null: false|
+| prepare_id             | integer| null: false|
+| price                  | integer| null: false|
+| place_id               | integer| null: false|
+| user                   | references |null: false,foreign_key: true |
 
-### Association
 
+  
 - belongs_to :user
+  has_one :customer
 
-## address テーブル
+
+## addresses テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| postcode        | string     | null: false, foreign_key: true |
-| state           | references | null: false, foreign_key: true |
-| city            | references | null: false, foreign_key: true |
-|address line     | references | null: false, foreign_key: true |
-|mobile number    | references | null: false, foreign_key: true |
-|
-|
-|
+| postcode        | string     | null: false|
+| place_id        | integer    | null: false|
+| city            | string     | null: false|
+| building         | string     |            |
+| address_line     | string     | null: false|
+| mobile_number    | string     | null: false|
+| costumer         | references |null: false,foreign_key: true |
 |
 
 ### Association
 
-- belongs_to :costumer
-- belongs_to :user
+- belongs_to :customer
