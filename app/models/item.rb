@@ -16,14 +16,14 @@ class Item < ApplicationRecord
   validates :prepare_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :place_id, numericality: { other_than: 1 , message: "can't be blank"}
 
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
+  validates :price, numericality: { only_integer: true }
   validates :price,
             numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
 
 
 
   belongs_to :user
-  has_one :customer
+  # has_one :customer
 
 
   has_one_attached :image

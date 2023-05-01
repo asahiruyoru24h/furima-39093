@@ -47,6 +47,20 @@ describe '商品出品機能' do
      @item.valid?
     expect(@item.errors.full_messages).to include("Prepare can't be blank")
   end
+
+  it '価格が空では登録できない' do
+    @item.price = ''
+    @item.valid?
+   expect(@item.errors.full_messages).to include("Price Out of setting range")
+ end
+
+ it '価格に半角数字以外が含まれている場合は登録できない' do
+  @item.price = '３００'
+  @item.valid?
+ expect(@item.errors.full_messages).to include("Price Out of setting range")
+end
+
+
   it '価格の情報が300~9,999,999では登録できない' do
      @item.price = '299'
      @item.valid?
