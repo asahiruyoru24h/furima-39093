@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  has_one_attached :image
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
@@ -26,6 +28,5 @@ class Item < ApplicationRecord
   # has_one :customer
 
 
-  has_one_attached :image
 
 end

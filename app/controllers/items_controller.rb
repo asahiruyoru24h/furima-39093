@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    # @items = Item.order("created_at DESC")
+
+    @items = Item.order(created_at: :desc)
 
   end
 
@@ -19,6 +20,13 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+  # def purchase
+  #   @item= Item.find(params[:id])
+  #   @item.update(customers_id: current_user.id)
+  # end
+
+
 
 
   private
