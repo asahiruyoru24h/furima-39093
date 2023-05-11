@@ -50,10 +50,7 @@ class ItemsController < ApplicationController
   end
 
 
-  # def purchase
-  #   @item= Item.find(params[:id])
-  #   @item.update(customers_id: current_user.id)
-  # end
+  
 
 
 
