@@ -1,7 +1,9 @@
 class AddressCustomer
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postcode, :place_id, :city, :building, :address_line, :mobile_number
+  attr_accessor :user_id, :item_id, :postcode, :place_id, :city, :building, :address_line, :mobile_number, :token
 
+
+  validates :token, presence: true
 
 
   validates :place_id, numericality: { other_than: 1 }

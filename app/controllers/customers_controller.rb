@@ -20,19 +20,25 @@ def create
   @item = Item.find(params[:item_id])
   @address_customer = AddressCustomer.new(customer_params)
   if @address_customer.valid?
+
+     pay_item
+    
     @address_customer.save
     redirect_to root_path 
   else
     render :index
   end
+
+  
 end
 
 private
 
 def customer_params
-  params.require(:address_customer).permit(:postcode, :place_id, :city, :address_line, :building, :mobile_number).merge(user_id: current_user.id, item_id: @item.id)
+  params.require(:address_customer).permit(:postcode, :place_id, :city, :address_line, :building, :mobile_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
 
 end
+
 
 
 def move_to_signed_in
@@ -42,6 +48,14 @@ def move_to_signed_in
 
 end
 
+def  pay_item
+  Payjp.api_key = "sk_test_532a311ba81dbfeb0a6fd7fc"  
+      Payjp::Charge.create(
+        amount: @item.price, 
+        card: params[:token] ,
+        currency: 'jpy'
+      )
+end
 
 end
 
