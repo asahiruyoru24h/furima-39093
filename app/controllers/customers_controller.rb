@@ -49,8 +49,8 @@ def move_to_signed_in
 end
 
 def  pay_item
-  Payjp.api_key = "sk_test_532a311ba81dbfeb0a6fd7fc"  
-      Payjp::Charge.create(
+  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+  Payjp::Charge.create(
         amount: @item.price, 
         card: params[:token] ,
         currency: 'jpy'
