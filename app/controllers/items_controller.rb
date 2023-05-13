@@ -28,7 +28,6 @@ class ItemsController < ApplicationController
 
 
   def edit
-
   end
 
 
@@ -50,10 +49,7 @@ class ItemsController < ApplicationController
   end
 
 
-  # def purchase
-  #   @item= Item.find(params[:id])
-  #   @item.update(customers_id: current_user.id)
-  # end
+  
 
 
 
@@ -68,7 +64,7 @@ class ItemsController < ApplicationController
   end
 
   def move_user
-    redirect_to root_path unless current_user == @item.user
+    redirect_to root_path if current_user != @item.user || @item.customer.present? 
   end
 
 end

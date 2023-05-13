@@ -25,7 +25,7 @@ class Item < ApplicationRecord
 
 
   belongs_to :user
-  # has_one :customer
+  has_one :customer
 
 
 
