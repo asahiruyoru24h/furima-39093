@@ -1,18 +1,14 @@
 class CustomersController < ApplicationController
 
-  before_action :move_to_signed_in, only: [:index]
+  before_action :authenticate_user!, only: [:index]
 
   before_action :set_item, only: [:create, :index]
+  before_action :move_user, only: [:index]
 
   def index
     @address_customer = AddressCustomer.new
     
-    if current_user == @item.user
-       redirect_to root_path
-      end
-    if @item.customer.present? 
-      redirect_to root_path
-    end
+   
   end
 
 def create
@@ -47,12 +43,12 @@ end
 
 
 
-def move_to_signed_in
-  unless user_signed_in?
-    redirect_to root_path 
-  end
-
+def move_user
+  redirect_to root_path if current_user == @item.user || @item.customer.present? 
 end
+
+
+
 
 def  pay_item
   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]

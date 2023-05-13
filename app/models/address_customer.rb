@@ -3,7 +3,7 @@ class AddressCustomer
   attr_accessor :user_id, :item_id, :postcode, :place_id, :city, :building, :address_line, :mobile_number, :token
 
 
-  validates :token, presence: true
+  
 
 
   validates :place_id, numericality: { other_than: 1 }
@@ -14,8 +14,9 @@ class AddressCustomer
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :city
     validates :user_id
-    validates :mobile_number, format: {with: /\A[0-9]{11}\z/ }
+    validates :mobile_number, format: {with: /\A\d{10,11}\z/ }
     validates :address_line
+    validates :token, presence: true
   end
 
   def save
