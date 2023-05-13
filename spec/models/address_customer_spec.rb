@@ -10,13 +10,15 @@ RSpec.describe AddressCustomer, type: :model do
 
  describe '商品購入機能' do
   context '購入できる時' do
-    it '建物名が存在しても登録できる' do
+    it '建物名が空でも登録できる' do
       @address_customer.building = ''
       expect(@address_customer).to be_valid
     end
     it '全ての項目が存在すれば登録できる' do
       expect(@address_customer).to be_valid
     end
+   
+
   end
 
 context '購入できない時' do
@@ -58,8 +60,8 @@ it '電話番号が空では登録できない' do
  expect(@address_customer.errors.full_messages).to include("Mobile number is invalid")
 end
 
-it '電話番号が10桁では登録できない' do
-  @address_customer.mobile_number = '1234567890'
+it '電話番号が９桁では登録できない' do
+  @address_customer.mobile_number = '123456789'
   @address_customer.valid?
   expect(@address_customer.errors.full_messages).to include("Mobile number is invalid")
  end
@@ -75,6 +77,15 @@ end
   @address_customer.valid?
   expect(@address_customer.errors.full_messages).to include("User can't be blank")
 end
+
+ 
+
+  it "tokenが空では登録できないこと" do
+    @address_customer.token = nil
+    @address_customer.valid?
+    expect(@address_customer.errors.full_messages).to include("Token can't be blank")
+  end
+
 
 end
 end

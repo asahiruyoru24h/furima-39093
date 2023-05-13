@@ -21,7 +21,7 @@ class AddressCustomer
   def save
     customer = Customer.create(item_id: item_id, user_id: user_id)
    
-    Address.create(postcode: postcode, place_id: place_id, city: city, address_line: address_line, building: building, mobile_number: mobile_number, customer: customer)
+    Address.create(postcode: postcode, place_id: place_id, city: city, address_line: address_line, building: building, mobile_number: mobile_number, customer_id: customer_id)
  
 
   end

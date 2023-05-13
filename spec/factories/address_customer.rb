@@ -8,7 +8,8 @@ FactoryBot.define do
     address_line          {'箱根'}
     building              {'山田'}
     mobile_number         {'09012345678'}
-  
+    user_id              {'4'}
+    token                {'tok_abcdefghijk00000000000000000'}
 
 
     
