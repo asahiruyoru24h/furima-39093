@@ -80,12 +80,17 @@ end
 
  
 
-  it "tokenが空では登録できないこと" do
+  it "tokenが空では購入できない" do
     @address_customer.token = nil
     @address_customer.valid?
     expect(@address_customer.errors.full_messages).to include("Token can't be blank")
   end
 
+  it "itemが紐付いていなければ購入できない" do
+    @address_customer.item_id = nil
+    @address_customer.valid?
+    expect(@address_customer.errors.full_messages).to include("Item can't be blank")
+  end
 
 end
 end

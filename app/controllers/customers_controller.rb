@@ -2,10 +2,9 @@ class CustomersController < ApplicationController
 
   before_action :move_to_signed_in, only: [:index]
 
-
+  before_action :set_item, only: [:create, :index]
 
   def index
-    @item = Item.find(params[:item_id])
     @address_customer = AddressCustomer.new
     
     if current_user == @item.user
@@ -17,7 +16,6 @@ class CustomersController < ApplicationController
   end
 
 def create
-  @item = Item.find(params[:item_id])
   @address_customer = AddressCustomer.new(customer_params)
   if @address_customer.valid?
 
@@ -33,6 +31,14 @@ def create
 end
 
 private
+
+def set_item
+  @item = Item.find(params[:item_id])
+
+end
+
+
+
 
 def customer_params
   params.require(:address_customer).permit(:postcode, :place_id, :city, :address_line, :building, :mobile_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
