@@ -25,57 +25,57 @@ context '購入できない時' do
   it '郵便番号が空では登録できない' do
     @address_customer.postcode = ''
     @address_customer.valid?
-    expect(@address_customer.errors.full_messages).to include("Postcode can't be blank")
+    expect(@address_customer.errors.full_messages).to include("郵便番号を入力してください")
    end
    it '郵便番号がハイフンなしでは登録できない' do
     @address_customer.postcode = '6820857'
     @address_customer.valid?
-    expect(@address_customer.errors.full_messages).to include("Postcode is invalid")
+    expect(@address_customer.errors.full_messages).to include("郵便番号は不正な値です")
    end
 
  it '都道府県の情報が初期値では登録できない' do
     @address_customer.place_id = '1'
     @address_customer.valid?
-   expect(@address_customer.errors.full_messages).to include("Place must be other than 1")
+   expect(@address_customer.errors.full_messages).to include("都道府県は1以外の値にしてください")
  end
  it '市区町村が空では登録できない' do
   @address_customer.city = ''
   @address_customer.valid?
-  expect(@address_customer.errors.full_messages).to include("City can't be blank")
+  expect(@address_customer.errors.full_messages).to include("市町村を入力してください")
  end
 it '番地が空では登録できない' do
   @address_customer.address_line = ''
   @address_customer.valid?
- expect(@address_customer.errors.full_messages).to include("Address line can't be blank")
+ expect(@address_customer.errors.full_messages).to include("番地を入力してください")
 end
 it '電話番号が空では登録できない' do
   @address_customer.mobile_number = ''
   @address_customer.valid?
-  expect(@address_customer.errors.full_messages).to include("Mobile number can't be blank")
+  expect(@address_customer.errors.full_messages).to include("電話番号を入力してください")
  end
 
  it '電話番号に半角数字以外が含まれている場合は登録できない' do
   @address_customer.mobile_number = '０９０１２３４５６７８'
   @address_customer.valid?
- expect(@address_customer.errors.full_messages).to include("Mobile number is invalid")
+ expect(@address_customer.errors.full_messages).to include("電話番号は不正な値です")
 end
 
 it '電話番号が９桁では登録できない' do
   @address_customer.mobile_number = '123456789'
   @address_customer.valid?
-  expect(@address_customer.errors.full_messages).to include("Mobile number is invalid")
+  expect(@address_customer.errors.full_messages).to include("電話番号は不正な値です")
  end
 
  it '電話番号が12桁では登録できない' do
   @address_customer.mobile_number = '123456789012'
   @address_customer.valid?
- expect(@address_customer.errors.full_messages).to include("Mobile number is invalid")
+ expect(@address_customer.errors.full_messages).to include("電話番号は不正な値です")
 end
 
  it 'userが紐付いていないと保存できない' do
   @address_customer.user_id = nil
   @address_customer.valid?
-  expect(@address_customer.errors.full_messages).to include("User can't be blank")
+  expect(@address_customer.errors.full_messages).to include("Userを入力してください")
 end
 
  
@@ -83,13 +83,13 @@ end
   it "tokenが空では購入できない" do
     @address_customer.token = nil
     @address_customer.valid?
-    expect(@address_customer.errors.full_messages).to include("Token can't be blank")
+    expect(@address_customer.errors.full_messages).to include("クレジットカード情報を入力してください")
   end
 
   it "itemが紐付いていなければ購入できない" do
     @address_customer.item_id = nil
     @address_customer.valid?
-    expect(@address_customer.errors.full_messages).to include("Item can't be blank")
+    expect(@address_customer.errors.full_messages).to include("Itemを入力してください")
   end
 
 end
