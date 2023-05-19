@@ -80,3 +80,6 @@ gem 'active_hash'
 
 
 gem 'payjp'
+
+gem 'rails-i18n'
+
